@@ -2,7 +2,7 @@
 
 A modern, high-performance translation tool inspired by DeepL and Google Translate. Built with a React frontend and an Express backend, supporting multi-language translation and file document processing.
 
-![Translator UI](https://via.placeholder.com/800x400?text=Translator+Preview)
+![Translator UI](http://localhost:5173/)
 
 ## ✨ Features
 
