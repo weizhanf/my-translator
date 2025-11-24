@@ -1,0 +1,21 @@
+{
+  "name": "hf-translator",
+  "version": "1.0.0",
+  "description": "Hugging Face documentation translator backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
+    "google-translate-api-x": "^10.7.2",
+    "helmet": "^7.1.0",
+    "lru-cache": "^6.0.0",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.2",
+    "pdf-parse": "^2.4.5"
+  }
+}

@@ -1,0 +1,48 @@
+# Implementation Plan - Advanced Translator
+
+The goal is to upgrade the existing simple translation API into a full-featured translator application with a WebUI similar to DeepL/Google Translate, supporting multiple languages and file formats (PDF, HTML).
+
+## User Review Required
+> [!IMPORTANT]
+> This plan introduces a new frontend (Vite + React) and modifies the backend to support file uploads.
+> I will use `google-translate-api-x` (or similar) for better quality if possible, or stick to LibreTranslate/MyMemory as fallbacks.
+> **Question**: Do you have a specific preference for the translation engine? I will default to adding Google Translate (unofficial) as a primary option for better quality, with fallbacks.
+
+## Proposed Changes
+
+### Backend ([server.js](file:///c:/Users/ZZY/Desktop/%E7%BF%BB%E8%AF%91%E5%99%A8/server.js) & new files)
+- **Modify [server.js](file:///c:/Users/ZZY/Desktop/%E7%BF%BB%E8%AF%91%E5%99%A8/server.js)**:
+    - Add `multer` for file uploads.
+    - Add endpoints for file translation (`/api/translate/file`).
+    - Serve static files from the `client/dist` directory.
+- **New `services/fileParser.js`**:
+    - Implement PDF parsing (using `pdf-parse`).
+    - Implement HTML parsing (using `cheerio`).
+    - Implement DOCX parsing (using `mammoth` if needed, initially just PDF/HTML).
+- **New `services/translator.js`**:
+    - Refactor translation logic out of [server.js](file:///c:/Users/ZZY/Desktop/%E7%BF%BB%E8%AF%91%E5%99%A8/server.js).
+    - Add support for Google Translate (via `google-translate-api-x` or similar).
+
+### Frontend (`client/`)
+- **Initialize Vite + React project**:
+    - Use TailwindCSS for DeepL-like styling.
+- **Components**:
+    - `TranslationBox`: Source and Target text areas.
+    - `LanguageSelector`: Dropdown with search.
+    - `ModeSelector`: Text / Document / WebUI.
+    - `FileUpload`: Drag and drop zone.
+
+## Verification Plan
+
+### Automated Tests
+- **Backend**:
+    - Test text translation endpoint with `curl`.
+    - Test file upload endpoint with sample PDF/HTML.
+- **Frontend**:
+    - Build the React app (`npm run build`).
+    - Verify UI elements render correctly.
+
+### Manual Verification
+- **Text Translation**: Input text and verify translation against Google Translate.
+- **File Translation**: Upload a PDF and check if the text is extracted and translated.
+- **UI**: Check if the design resembles DeepL (clean, split view).
